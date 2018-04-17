@@ -14,7 +14,6 @@ composer require ndexondeck/soapbuilder
 ```
 
 ## Documents will be available soon, but for now see a few examples
-## Table of Contents
 
 1. [Build a Simple Soap Request](#how)
    
@@ -31,7 +30,7 @@ echo $soapBuilder->getXml();
 ```
 
 
-1. [Build a more complex Soap request](#how)
+1. [Build a more complex Soap request](#how2)
    
 ```php
  $soapBuilder = new Builder('soap',[
@@ -58,7 +57,7 @@ echo $soapBuilder->getXml();
 ```
 
 
-1. [Build a simple XML string](#how)
+1. [Build a simple XML string](#how3)
    
 ```php
 $xmlBuilder = (new SoapBuilder())->setAsXml()->setVersion('1.0');
@@ -69,7 +68,7 @@ echo $xmlBuilder->getXml();
 ```
 
 
-1. [Build a more complex XML string](#how)
+1. [Build a more complex XML string](#how4)
    
 ```php
 $xmlBuilder = new SoapBuilder();
