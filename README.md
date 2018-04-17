@@ -15,22 +15,22 @@ composer require ndexondeck/soapbuilder
 
 ## Documents will be available soon, but for now see a few examples
 
-<li><h3>Build a Simple Soap Request</h3></li>
+<h3><li>Build a Simple Soap Request</li></h3>
    
 ```php
 $soapBuilder = new Builder();
 
-$soapBuilder->soap__Header = new SoapPayload();
+$soapBuilder->soap__Header = new Payload();
 
-$soapBuilder->Body = new SoapPayload();
-$soapBuilder->Body->Username = new SoapPayload('ndxondeck@gmail.com');
-$soapBuilder->Body->Password = new SoapPayload('ndex4Jesus');
+$soapBuilder->Body = new Payload();
+$soapBuilder->Body->Username = new Payload('ndxondeck@gmail.com');
+$soapBuilder->Body->Password = new Payload('ndex4Jesus');
 
 echo $soapBuilder->getXml();
 ```
 
 
-<li><h3>Build a more complex Soap request</h3></li>
+<h3><li>Build a more complex Soap request</li></h3>
    
 ```php
  $soapBuilder = new Builder('soap',[
@@ -39,49 +39,49 @@ echo $soapBuilder->getXml();
         "wsa"=>"http://schemas.xmlsoap.org/ws/2004/08/addressing",
     ],'1.2');
 
-$soapBuilder->soap__Header = new SoapPayload();
-$soapBuilder->soap__Header->wsa__Action = new SoapPayload('http://tempuri.org/IService/SendMessage',[
+$soapBuilder->soap__Header = new Payload();
+$soapBuilder->soap__Header->wsa__Action = new Payload('http://tempuri.org/IService/SendMessage',[
     "xmlns:wsa"=>"http://www.w3.org/2005/08/addressing"
 ]);
-$soapBuilder->soap__Header->wsa__To = new SoapPayload('https://sms.sender.example/Service.svc',[
+$soapBuilder->soap__Header->wsa__To = new Payload('https://sms.sender.example/Service.svc',[
     "xmlns:wsa"=>"http://www.w3.org/2005/08/addressing"
 ]);
 
-$soapBuilder->soap__Body = new SoapPayload();
-$soapBuilder->soap__Body->tem__SendMessage = new SoapPayload();
-$soapBuilder->soap__Body->tem__SendMessage->tem__message = new SoapPayload();
-$soapBuilder->soap__Body->tem__SendMessage->tem__message->sms__Message = new SoapPayload($msg);
-$soapBuilder->soap__Body->tem__SendMessage->tem__message->sms__MobileNo = new SoapPayload($phone);
+$soapBuilder->soap__Body = new Payload();
+$soapBuilder->soap__Body->tem__SendMessage = new Payload();
+$soapBuilder->soap__Body->tem__SendMessage->tem__message = new Payload();
+$soapBuilder->soap__Body->tem__SendMessage->tem__message->sms__Message = new Payload($msg);
+$soapBuilder->soap__Body->tem__SendMessage->tem__message->sms__MobileNo = new Payload($phone);
 
 echo $soapBuilder->getXml();
 ```
 
 
-<li><h3>Build a simple XML string</h3></li>
+<h3><li>Build a simple XML string</li></h3>
    
 ```php
 $xmlBuilder = (new SoapBuilder())->setAsXml()->setVersion('1.0');
-$xmlBuilder->SearchCriteria = new SoapPayload();
-$xmlBuilder->SearchCriteria->UserName = new SoapPayload('John');
+$xmlBuilder->SearchCriteria = new Payload();
+$xmlBuilder->SearchCriteria->UserName = new Payload('John');
 
 echo $xmlBuilder->getXml();
 ```
 
 
-<li><h3>Build a more complex XML string</h3></li>
+<h3><li>Build a more complex XML string</li></h3>
    
 ```php
 $xmlBuilder = new SoapBuilder();
 $xmlBuilder->setVersion('1.0')->setAsResponse()->setAsXml();
-$xmlBuilder->Response = new SoapPayload();
-$xmlBuilder->Response->ResponseCode = new SoapPayload('00');
-$xmlBuilder->Response->UserList = new SoapPayloadCollection('Department');
+$xmlBuilder->Response = new Payload();
+$xmlBuilder->Response->ResponseCode = new Payload('00');
+$xmlBuilder->Response->UserList = new PayloadCollection('Department');
 
 $user_count = 0;
 if(!empty($results)){
     foreach ($results as $department){
 
-        $collection = new SoapPayloadCollection('User',['Id'=>$department['id'], 'Name'=>$department['name']]);
+        $collection = new PayloadCollection('User',['Id'=>$department['id'], 'Name'=>$department['name']]);
 
         $this_count = 0;
         foreach ($department['users'] as $user){
